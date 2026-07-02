@@ -6,6 +6,7 @@ numpy>=1.26.0
 python-dotenv>=1.0.0
 jupyter>=1.0.0
 ipykernel>=6.29.0
+litellm>=1.0.0
 
 # Ghim cryptography để tránh xung đột với agent-governance-toolkit-core / presidio-anonymizer
 cryptography>=46.0.7,<47.0.0

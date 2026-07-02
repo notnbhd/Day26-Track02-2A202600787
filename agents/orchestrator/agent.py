@@ -7,9 +7,9 @@ from pathlib import Path
 
 from google.adk.agents import Agent
 from google.adk.agents.remote_a2a_agent import RemoteA2aAgent
+from google.adk.models.lite_llm import LiteLlm
 from google.adk.tools.mcp_tool import StdioConnectionParams
 from google.adk.tools.mcp_tool.mcp_toolset import McpToolset
-from google.genai import types
 from mcp import StdioServerParameters
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -101,11 +101,8 @@ mcp_tools = McpToolset(
 
 root_agent = Agent(
     name="orchestrator",
-    model="gemini-2.5-flash",
+    model=LiteLlm(model="deepseek/deepseek-chat"),
     description="Điều phối nghiên cứu bằng cách ủy quyền cho search, database và synthesis specialist.",
-    generate_content_config=types.GenerateContentConfig(
-        thinking_config=types.ThinkingConfig(thinking_budget=0),
-    ),
     instruction="""Bạn là orchestrator nghiên cứu cho hệ multi-agent.
 
 QUAN TRỌNG — luôn làm theo thứ tự:

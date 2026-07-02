@@ -5,6 +5,7 @@ from pathlib import Path
 
 from google.adk.agents import Agent
 from google.adk.a2a.utils.agent_to_a2a import to_a2a
+from google.adk.models.lite_llm import LiteLlm
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
@@ -56,7 +57,7 @@ def run_sql_query(sql: str) -> dict:
 
 root_agent = Agent(
     name="database_agent",
-    model="gemini-2.5-flash",
+    model=LiteLlm(model="deepseek/deepseek-chat"),
     description="Truy vấn database chỉ đọc và trả về metrics có cấu trúc.",
     instruction=(
         "Bạn là chuyên gia database. Chỉ chạy truy vấn SELECT qua run_sql_query. "

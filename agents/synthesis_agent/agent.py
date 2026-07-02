@@ -5,6 +5,7 @@ from pathlib import Path
 
 from google.adk.agents import Agent
 from google.adk.a2a.utils.agent_to_a2a import to_a2a
+from google.adk.models.lite_llm import LiteLlm
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 if str(PROJECT_ROOT) not in sys.path:
@@ -64,7 +65,7 @@ def synthesize_report(findings: str, audience: str = "technical") -> dict:
 
 root_agent = Agent(
     name="synthesis_agent",
-    model="gemini-2.5-flash",
+    model=LiteLlm(model="deepseek/deepseek-chat"),
     description="Tổng hợp kết quả nghiên cứu thành báo cáo cuối có cấu trúc.",
     instruction=(
         "Bạn là chuyên gia tổng hợp báo cáo nghiên cứu. "
